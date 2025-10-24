@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: purchases_bronze
+    description: "Bronze layer mirror of the Snowpipe staging table."
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+          - unique
+      - name: ts
+        tests:
+          - not_null
+      - name: price
+        tests:
+          - not_null
+          - relationships:
+              to: ref('products_dim')
+              field: product_id
+      - name: quantity
+        tests:
+          - not_null
+  - name: purchases_silver
+    description: "Silver layer: conformed and normalized purchases."
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+          - unique
+      - name: day
+        tests:
+          - not_null
+      - name: price
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['>=0']  # placeholder: see custom test for numeric range
+      - name: quantity
+        tests:
+          - not_null
+  - name: purchases_gold
+    description: "Gold layer: daily aggregated metrics."
+    columns:
+      - name: day
+        tests:
+          - not_null

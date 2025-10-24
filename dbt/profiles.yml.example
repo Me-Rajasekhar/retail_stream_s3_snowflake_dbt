@@ -1,0 +1,14 @@
+retail_profile:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: <account_identifier>
+      user: <user>
+      password: <password>
+      role: <role>
+      database: <database>
+      warehouse: <warehouse>
+      schema: bronze
+      threads: 4
+      client_session_keep_alive: False

@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('SNOWFLAKE_DATABASE', 'MY_DATABASE') }}"
+    schema: "{{ env_var('SNOWFLAKE_SCHEMA', 'PUBLIC') }}"
+    tables:
+      - name: raw_purchases_staging
+        description: "Raw staging table loaded by Snowpipe from S3 bronze parquet files."
+        columns:
+          - name: event_id
+            description: "Unique event id (uuid)"
+          - name: ts
+            description: "Event timestamp (UTC)"
+          - name: store_id
+            description: "Store identifier"
+          - name: customer_id
+            description: "Customer identifier"
+          - name: product_id
+            description: "Product identifier"
+          - name: category
+            description: "Product category"
+          - name: price
+            description: "Unit price at time of sale"
+          - name: quantity
+            description: "Quantity purchased"
+          - name: total_amount
+            description: "Total purchase amount"
+          - name: dt
+            description: "Date partition column written by Glue (yyyy-MM-dd)"

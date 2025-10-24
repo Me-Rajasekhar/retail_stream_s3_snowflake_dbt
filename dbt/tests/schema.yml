@@ -1,0 +1,5 @@
+version: 2
+
+tests:
+  - name: total_amount_consistency
+    test: ref('test_total_amount_consistency')
