@@ -165,6 +165,6 @@ dbt test
 
 ---
 
-**Author:** Rajasekhar Anderson  
+**Author:** Rajasekhar B  
 **Version:** 2.0 — Includes dbt granular tests + Terraform IaC for full infra provisioning.
 
